@@ -23,9 +23,9 @@ export default function App() {
             initialRouteName="Home"
             screenOptions={{
               headerStyle: {
-                backgroundColor: '#f8fafc', // tailwind slate-50
+                backgroundColor: '#f8fafc',
               },
-              headerTintColor: '#334155', // tailwind slate-700
+              headerTintColor: '#334155',
               headerTitleStyle: {
                 fontWeight: 'bold',
               },
