@@ -1,35 +1,80 @@
-# TypeScript Example
+# React Native Todo App
 
-<p>
-  <!-- iOS -->
-  <img alt="Supports Expo iOS" longdesc="Supports Expo iOS" src="https://img.shields.io/badge/iOS-4630EB.svg?style=flat-square&logo=APPLE&labelColor=999999&logoColor=fff" />
-  <!-- Android -->
-  <img alt="Supports Expo Android" longdesc="Supports Expo Android" src="https://img.shields.io/badge/Android-4630EB.svg?style=flat-square&logo=ANDROID&labelColor=A4C639&logoColor=fff" />
-  <!-- Web -->
-  <img alt="Supports Expo Web" longdesc="Supports Expo Web" src="https://img.shields.io/badge/web-4630EB.svg?style=flat-square&logo=GOOGLE-CHROME&labelColor=4285F4&logoColor=fff" />
-</p>
+A React Native Todo application with NativeWind (Tailwind CSS) styling.
 
-```sh
-npx create-expo --example with-typescript
+## Styling with NativeWind
+
+This project uses NativeWind v4 for styling, which allows you to use Tailwind CSS classes directly in React Native components.
+
+### Using Styled Components
+
+To properly use Tailwind CSS classes in React Native, we've created styled wrappers in `src/utils/nativewind-styled.ts`:
+
+```typescript
+import { styled } from 'nativewind';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  TextInput,
+  SafeAreaView,
+  ScrollView,
+  FlatList,
+  Image,
+  Pressable,
+} from 'react-native';
+
+// Basic Components
+export const StyledView = styled(View);
+export const StyledText = styled(Text);
+export const StyledTouchableOpacity = styled(TouchableOpacity);
+export const StyledTextInput = styled(TextInput);
+export const StyledSafeAreaView = styled(SafeAreaView);
+export const StyledScrollView = styled(ScrollView);
+export const StyledFlatList = styled(FlatList);
+export const StyledImage = styled(Image);
+export const StyledPressable = styled(Pressable);
 ```
 
-TypeScript is a superset of JavaScript which gives you static types and powerful tooling in Visual Studio Code including autocompletion and useful inline warnings for type errors.
+### How to Use Styled Components
 
-## 🚀 How to use
+Instead of using React Native's built-in components directly, use the styled versions:
 
-#### Creating a new project
+```typescript
+// ❌ Don't do this
+import { View, Text } from 'react-native';
 
-- Create a project: `npx create-expo --example with-typescript`
-- `cd` into the project
+<View className="flex-1 p-4 bg-gray-100">
+  <Text className="text-lg font-bold">Hello World</Text>
+</View>
 
-### Adding TypeScript to existing projects
+// ✅ Do this instead
+import { StyledView, StyledText } from '../../utils/nativewind-styled';
 
-- Create a blank TypeScript config: `touch tsconfig.json`
-- Run `yarn start` or `npm run start` to automatically configure TypeScript
-- Rename files to TypeScript, `.tsx` for React components and `.ts` for plain typescript files
+<StyledView className="flex-1 p-4 bg-gray-100">
+  <StyledText className="text-lg font-bold">Hello World</StyledText>
+</StyledView>
+```
 
-> 💡 You can disable the TypeScript setup in Expo CLI with the environment variable `EXPO_NO_TYPESCRIPT_SETUP=1 expo start`
+### Important Note
 
-## 📝 Notes
+React Native components don't have a `className` prop by default. Using the `styled` wrapper from NativeWind allows the components to accept a `className` prop with Tailwind CSS classes.
 
-- [Expo TypeScript guide](https://docs.expo.dev/versions/latest/guides/typescript/)
+## Running the Application
+
+```bash
+# Install dependencies
+npm install
+
+# Start the application
+npm start
+
+# Run on Web
+npm run web
+
+# Run on iOS
+npm run ios
+
+# Run on Android
+npm run android
+```
